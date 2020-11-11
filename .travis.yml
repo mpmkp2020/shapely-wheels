@@ -1,6 +1,6 @@
 language: python
 python: 3.5
-dist: trusty
+dist: bionic
 services: docker
 filter_secrets: false
 os: linux
@@ -13,7 +13,7 @@ cache:
 env:
   global:
   - REPO_DIR="Shapely"
-  - BUILD_COMMIT=1.7.1
+  - BUILD_COMMIT=master
   - UNICODE_WIDTH=32
   - USE_CCACHE=1
 
