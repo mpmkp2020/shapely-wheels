@@ -111,6 +111,7 @@ jobs:
     - NP_TEST_DEP=numpy==1.17.3
     - MB_PYTHON_OSX_VER=10.9
 
+
 before_install:
     - python -c "import fcntl; fcntl.fcntl(1, fcntl.F_SETFL, 0)"
     - BUILD_DEPENDS="$NP_BUILD_DEP cython==0.29.21 wheel==0.31.1"
