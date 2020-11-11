@@ -3,4 +3,4 @@
 	url = https://github.com/matthew-brett/multibuild.git
 [submodule "Shapely"]
 	path = Shapely
-	url = https://github.com/Toblerity/Shapely.git
+	url = https://github.com/HirniMeshram/Shapely.git
