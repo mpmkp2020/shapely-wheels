@@ -4,10 +4,10 @@ services: docker
 filter_secrets: false
 os: linux
 
-cache:
-  directories:
-  - $HOME/.ccache
-  - $HOME/.cache/pip
+#cache:
+ # directories:
+  #- $HOME/.ccache
+  #- $HOME/.cache/pip
 
 env:
   global:
