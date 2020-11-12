@@ -19,6 +19,7 @@ env:
 
 addons:
   apt:
+    packages:
     -libgeos-dev
  # artifacts:
   #  paths:
