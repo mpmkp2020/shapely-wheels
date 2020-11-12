@@ -4,10 +4,10 @@ services: docker
 filter_secrets: false
 os: linux
 
-#cache:
- # directories:
-  #- $HOME/.ccache
-  #- $HOME/.cache/pip
+cache:
+  directories:
+  - $HOME/.ccache
+  - $HOME/.cache/pip
 
 env:
   global:
@@ -17,7 +17,9 @@ env:
   - UNICODE_WIDTH=32
   - USE_CCACHE=1
 
-#addons:
+addons:
+  apt:
+  -libgeos-dev
  # artifacts:
   #  paths:
    # - $(ls wheelhouse/*.whl)
