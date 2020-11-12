@@ -25,6 +25,28 @@ env:
 
 jobs:
   include:
+  - name: "Python 3.8 aarch64 linux"
+    stage: Build and test wheel
+    os: linux
+    arch: arm64-graviton2
+    dist: focal
+    virt: vm
+    group: edge
+     env:
+    - MB_PYTHON_VERSION=3.8
+    - PLAT=aarch64
+    - NP_BUILD_DEP=numpy==1.17.3
+  #  - NP_TEST_DEP=numpy==1.17.3
+    - DOCKER_IMAGE=quay.io/pypa/manylinux2014_${PLAT}
+    script:
+        - echo "This stage will just build AArch64 wheel"
+    workspaces:
+      create:
+        name: ws1
+        paths:
+          - wheelhouse
+    after_success:
+      - echo "This stage will not upload aarch64 wheel"
   - name: "Python 2.7 x86_64 linux"
     os: linux
     env:
@@ -49,30 +71,12 @@ jobs:
     - MB_PYTHON_VERSION=3.7
     - NP_BUILD_DEP=numpy==1.14.5
     - NP_TEST_DEP=numpy==1.14.5
-  - name: "Python 3.7 aarch64 linux"
-    os: linux
-    arch: arm64
-    env:
-    - MB_PYTHON_VERSION=3.7
-    - PLAT=aarch64
-    - NP_BUILD_DEP=numpy==1.14.5
-    - NP_TEST_DEP=numpy==1.14.5
-    - DOCKER_IMAGE=quay.io/pypa/manylinux2014_${PLAT}
   - name: "Python 3.8 x86_64 linux"
     os: linux
     env:
     - MB_PYTHON_VERSION=3.8
     - NP_BUILD_DEP=numpy==1.17.3
     - NP_TEST_DEP=numpy==1.17.3
-  - name: "Python 3.8 aarch64 linux"
-    os: linux
-    arch: arm64
-    env:
-    - MB_PYTHON_VERSION=3.8
-    - PLAT=aarch64
-    - NP_BUILD_DEP=numpy==1.17.3
-    - NP_TEST_DEP=numpy==1.17.3
-    - DOCKER_IMAGE=quay.io/pypa/manylinux2014_${PLAT}
   - name: "Python 3.5 osx"
     os: osx
     language: generic
@@ -102,7 +106,23 @@ jobs:
     - NP_BUILD_DEP=numpy==1.17.3
     - NP_TEST_DEP=numpy==1.17.3
     - MB_PYTHON_OSX_VER=10.9
-
+  - name: "Python 3.8 aarch64 linux"
+    stage: Test wheel
+    arch: arm64-graviton2
+    dist: focal
+    virt: vm
+    group: edge
+     env:
+    - MB_PYTHON_VERSION=3.8
+    - PLAT=aarch64
+   # - NP_BUILD_DEP=numpy==1.17.3
+    - NP_TEST_DEP=numpy==1.17.3
+    - DOCKER_TEST_IMAGE=multibuild/xenial_arm64v8
+      workspaces:
+        use: ws1
+      install:
+        - echo "This stage will test and upload the AArch64 wheel"
+        
 before_install:
     - python -c "import fcntl; fcntl.fcntl(1, fcntl.F_SETFL, 0)"
     - BUILD_DEPENDS="$NP_BUILD_DEP cython==0.29.21 wheel==0.31.1"
