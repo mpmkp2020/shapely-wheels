@@ -20,7 +20,7 @@ env:
 addons:
   apt:
     packages:
-    -libgeos-dev
+    - libgeos-dev
  # artifacts:
   #  paths:
    # - $(ls wheelhouse/*.whl)
