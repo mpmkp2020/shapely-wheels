@@ -29,7 +29,6 @@ jobs:
     stage: Build and test wheel
     os: linux
     arch: arm64-graviton2
-    dist: focal
     virt: vm
     group: edge
     env:
@@ -109,7 +108,6 @@ jobs:
   - name: "Python 3.8 aarch64 linux"
     stage: Test wheel
     arch: arm64-graviton2
-    dist: focal
     virt: vm
     group: edge
     env:
